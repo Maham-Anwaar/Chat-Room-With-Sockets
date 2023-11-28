@@ -11,15 +11,27 @@ io.on('connection', socket=>{
 
     // tell the client a user has joined.
     // broadcast because we want everyone to get this msg except the new user.
-    socket.broadcast.emit('joined', 'A user has joined.');
+    // socket.broadcast.emit('joined', 'A user has joined.');
+
+    socket.on('roomJoin', (room)=>{
+        console.log(room)
+        socket.join(room);
+    })
 
     socket.on('report', socket=>{
         console.log('> Slave has reported back');
     })
     
-    socket.on('new-msg', msg=>{
-        socket.broadcast.emit('display-msg', msg);
+    socket.on('new-msg', (msg, selectedRoom)=>{
+        console.log(selectedRoom)
+        socket.to(selectedRoom).emit('display-msg', msg);
     })
+
+    socket.on('newUser', (user, selectedRoom)=>{
+        socket.to(selectedRoom).emit('joinMsg', `${user} has joined the chat.`);
+    })
+
+
 
 })
 
