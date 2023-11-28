@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src='index.js' type='module'></script>
+    <title>Chat Room</title>
+    <style>
+        #chatBox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        #messageInput {
+            width: calc(100% - 60px);
+            padding: 10px;
+        }
+
+        #sendButton {
+            width: 50px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatBox">
+        <!-- Messages will be displayed here -->
+    </div>
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendButton">Send</button>
+
+
+</body>
+</html>
